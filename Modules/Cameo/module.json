@@ -1,0 +1,14 @@
+{
+    "name": "Cameo",
+    "alias": "cameo",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Cameo\\Providers\\CameoServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

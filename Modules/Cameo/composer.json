@@ -1,0 +1,23 @@
+{
+	"name" : "nwidart/cameo",
+	"authors" : [{
+			"name" : "Nicolas Widart",
+			"email" : "n.widart@gmail.com"
+		}
+	],
+	"extra" : {
+		"laravel" : {
+			"providers" : [
+				"Modules\\Cameo\\Providers\\CameoServiceProvider"
+			]
+		}
+	},
+	"autoload" : {
+		"psr-4" : {
+			"Modules\\Cameo\\" : ""
+		}
+	},
+	"require": {
+		"kalnoy/nestedset": "^4.3"
+	}
+}
