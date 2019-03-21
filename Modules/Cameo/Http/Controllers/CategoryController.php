@@ -37,6 +37,7 @@ class CategoryController extends BaseController
      */
     public function store(CategoryRequest $request, CategoryModel $model)
     {
+        dd($request->all());
         $model->saveDatas($request->all());
     }
 

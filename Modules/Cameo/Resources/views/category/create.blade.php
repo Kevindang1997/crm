@@ -39,12 +39,14 @@ $input_content = new EditorField([
 
 $save = new ButtonField([
     'type'=>'submit',
-    'class'=>'btn btn-primary'
+    'class'=>'btn btn-primary',
+    'name'=>'save'
 ],__('Save'));
 
 $saveAndExit = new ButtonField([
     'type'=>'submit',
-    'class'=>'btn btn-primary'
+    'class'=>'btn btn-primary',
+    'name'=>'save_exit'
 ],__('Save & Exit'));
 
 $parent_id = new DropDownListField([
