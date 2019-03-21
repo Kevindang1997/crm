@@ -1,8 +1,16 @@
 <?php
 namespace Modules\Cameo\Libs\Traits;
 trait StoreCategory{
-    public function storeAsRoot($attrs){
-        $node = new $this($attrs);
-        return $node->save();
+    public function getAllCategoriesWithDepth(){
+        return $this->withDepth()->get();
+    }
+    
+    public function getArrayWithFormatLabel(){
+        $allList = $this->getAllCategoriesWithDepth();
+        $array = [];
+        foreach($allList as $key => $value){
+            $array[$value->id] = str_repeat('--|', $value->depth).' '.$value->title;
+        }
+        return $array;
     }
 }

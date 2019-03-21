@@ -4,6 +4,9 @@ extract($params);
 <div class="{{$group}}">
 	@include('cameo::partials.label',['label'=>$label])
 	<select @include('cameo::partials.attrs',['attrs'=>$attrs])>
+		@if($nullable)
+			<option value="">{{$nullable}}</option>
+		@endif
 		@if($datas)
 			@foreach($datas as $key => $value)
 				<option value="{{$key}}" @if($key == $default) selected="selected" @endif>{{$value}}</option>

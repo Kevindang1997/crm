@@ -5,6 +5,9 @@ namespace Modules\Cameo\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Cameo\Libs\Classes\BaseController;
+use Modules\Cameo\Models\CategoryModel;
+use Modules\Cameo\Http\Requests\CategoryRequest;
+
 
 class CategoryController extends BaseController
 {
@@ -21,9 +24,10 @@ class CategoryController extends BaseController
      * Show the form for creating a new resource.
      * @return Response
      */
-    public function create()
+    public function create(CategoryModel $model)
     {
-        return view('cameo::category.create');
+        $allList = $model->getArrayWithFormatLabel();
+        return view('cameo::category.create',['allList'=>$allList]);
     }
 
     /**
@@ -31,9 +35,9 @@ class CategoryController extends BaseController
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request, CategoryModel $model)
     {
-        dump($request->all());
+        $model->saveDatas($request->all());
     }
 
     /**

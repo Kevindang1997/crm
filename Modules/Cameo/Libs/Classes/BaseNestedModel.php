@@ -2,7 +2,6 @@
 namespace Modules\Cameo\Libs\Classes;
 use Illuminate\Database\Eloquent\Model;
 use Kalnoy\Nestedset\NodeTrait;
-
 abstract class BaseNestedModel extends Model{
     use NodeTrait;
     protected $primaryKey = 'id';
@@ -25,7 +24,8 @@ abstract class BaseNestedModel extends Model{
         return $this->parent_id == null ? true : false;
     }
     
-    public function saveDatas(){
+    public function saveDatas($datas = []){
+        $this->setAllAttribute($datas);
         if($this->isParent()){
            $this->makeRoot()->save();
         }else{
@@ -37,7 +37,11 @@ abstract class BaseNestedModel extends Model{
         return $this;
     }
     
+    public function setAllAttribute($datas = []){
+       
+    }
+    
     public function findParentById($id){
-        return $this->where('id','=',$id)->find();
+        return $this->find($id);
     }
 }

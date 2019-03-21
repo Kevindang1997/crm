@@ -4,7 +4,10 @@ use Modules\Cameo\Libs\Fields\ButtonField;
 use Modules\Cameo\Libs\Fields\EditorField;
 use Modules\Cameo\Libs\Fields\DropDownListField;
 
-$input_name = new InputField(
+/*
+ * @var $allList
+ */
+$input_title = new InputField(
 [
     'class'=>'form-control',
     'type'=>'text',
@@ -14,7 +17,7 @@ $input_name = new InputField(
     'for'=>'category_title',
     'title'=>__('Category Title:')
 ]);
-$input_name->setFeedback();
+$input_title->setFeedback();
 
 $input_description = new EditorField([
     'class'=>'form-control editor-mini',
@@ -34,10 +37,15 @@ $input_content = new EditorField([
     'title'=>__('Content')
 ]);
 
-$submit = new ButtonField([
+$save = new ButtonField([
     'type'=>'submit',
-    'class'=>'btn btn-primary pull-right'
+    'class'=>'btn btn-primary'
 ],__('Save'));
+
+$saveAndExit = new ButtonField([
+    'type'=>'submit',
+    'class'=>'btn btn-primary'
+],__('Save & Exit'));
 
 $parent_id = new DropDownListField([
     'class'=>'form-control',
@@ -47,14 +55,8 @@ $parent_id = new DropDownListField([
     'for'=>'parent_id',
     'title'=>__('Parent Category')
 ]);
-$datas = [
-    '0'=>'lorem 0',
-    '1'=>'lorem 1',
-    '2'=>'lorem 2',
-    '3'=>'lorem 3',
-    '4'=>'lorem 4',
-];
-$parent_id->setDatas($datas,3);
+$parent_id->setDatas($allList);
+$parent_id->setNullable(__('Root Category'));
 $input_seo_title = new InputField(
 [
     'class'=>'form-control',
@@ -82,6 +84,11 @@ $input_seo_keywords = new EditorField([
     'for'=>'seo_keywords',
     'title'=>__('Seo Keywords')
 ]);
+
+if($errors->has('title')){
+   $input_title->setError();
+   $input_title->setHelpBlock(__('PLease input category title'));
+}
 ?>
 @extends('cameo::layouts.master') 
 @section('content')
@@ -95,10 +102,11 @@ $input_seo_keywords = new EditorField([
         		</div>
         		<div class="box-body">
     			<?php 
-                    $input_name->render();
+                    $input_title->render();
                     $input_description->render();
                     $input_content->render();
-                    $submit->render();
+                    $save->render();
+                    $saveAndExit->render();
             	?>
         		</div>
         	</div>

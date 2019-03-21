@@ -8,4 +8,8 @@ class DropDownListField extends Field{
         $this->params['datas'] = $datas;
         $this->params['default'] = $default;
     }
+    
+    public function setNullable($nullable){
+        $this->params['nullable'] = $nullable;
+    }
 }
